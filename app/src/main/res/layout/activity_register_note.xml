@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterNoteActivity"
+    android:background="#1C1C1C">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:weightSum="3"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:id="@+id/toplinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="horizontal"
+
+            >
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="?attr/homeAsUpIndicator"
+                android:contextClickable="true"
+                android:background="@null"
+                app:tint="#F2F2F2" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layautNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+
+            android:orientation="vertical"
+            >
+            <EditText
+                android:id="@+id/edTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="25dp"
+                android:hint="Titulo"
+                android:textSize="34sp"
+                android:textColor="@android:color/white"
+                android:background="@android:color/transparent"
+                android:textColorHint="#A4A4A4"
+                />
+
+            <EditText
+                android:id="@+id/edtNota"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Escribe algo..."
+
+                android:backgroundTint="@android:color/transparent"
+                android:textSize="15sp"
+                android:paddingTop="20dp"
+                android:paddingLeft="10dp"
+                android:textColor="@color/white"
+                android:textColorHint="#A4A4A4"
+                android:gravity="start"
+                android:inputType="textMultiLine" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layautFooter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:weightSum="5"
+            android:gravity="center"
+            android:orientation="horizontal"
+
+            >
+
+            <ImageButton
+                android:id="@+id/btnEliminarNota"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:contextClickable="true"
+                android:clickable="true"
+                android:src="@android:drawable/ic_menu_delete" />
+
+            <ImageButton
+                android:id="@+id/btnOpcionesImagenes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:contextClickable="true"
+                android:src="@android:drawable/ic_menu_add" />
+
+            <HorizontalScrollView
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <RadioGroup
+                    android:id="@+id/rdgColores"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/btn1"
+                        android:text="#ff6961"
+                        android:textColor="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/radio_selector"
+                        android:backgroundTint="#ff6961"
+
+
+                        android:layout_marginLeft="5dp"
+                        />
+                    <RadioButton
+                        android:id="@+id/btn2"
+                        android:text="#77dd77"
+                        android:textColor="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/radio_selector"
+                        android:backgroundTint="#77dd77"
+                        android:layout_marginLeft="5dp"/>
+                    <RadioButton
+                        android:id="@+id/btn3"
+                        android:text="#fdfd96"
+                        android:textColor="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/radio_selector"
+                        android:backgroundTint="#fdfd96"
+                        android:layout_marginLeft="5dp"/>
+                    <RadioButton
+                        android:id="@+id/btn4"
+                        android:text="#84b6f4"
+                        android:textColor="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/radio_selector"
+                        android:backgroundTint="#84b6f4"
+                        android:layout_marginLeft="5dp"/>
+                    <RadioButton
+                        android:id="@+id/btn5"
+                        android:text="#fdcae1"
+                        android:textColor="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/radio_selector"
+                        android:backgroundTint="#fdcae1"
+                        android:layout_marginLeft="5dp"/>
+                    <RadioButton
+                        android:id="@+id/btn6"
+                        android:text="#b0c2f2"
+                        android:textColor="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/radio_selector"
+                        android:backgroundTint="#b0c2f2"
+                        android:layout_marginLeft="5dp"/>
+                    <RadioButton
+                        android:id="@+id/btn7"
+                        android:text="#ffe4e1"
+                        android:textColor="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/radio_selector"
+                        android:backgroundTint="#ffe4e1"
+                        android:layout_marginLeft="5dp"/>
+                    <RadioButton
+                        android:id="@+id/btn8"
+                        android:text="#b2e2f2"
+                        android:textColor="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/radio_selector"
+                        android:backgroundTint="#b2e2f2"
+                        android:layout_marginLeft="5dp"/>
+                    <RadioButton
+                        android:id="@+id/btn9"
+                        android:text="#ffda9e"
+                        android:textColor="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/radio_selector"
+                        android:backgroundTint="#ffda9e"
+                        android:layout_marginLeft="5dp"/>
+                    <RadioButton
+                        android:id="@+id/btn10"
+                        android:text="#fabfb7"
+                        android:textColor="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@android:color/transparent"
+                        android:background="@drawable/radio_selector"
+                        android:backgroundTint="#fabfb7"
+                        android:layout_marginLeft="5dp"/>
+
+                </RadioGroup>
+            </HorizontalScrollView>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
