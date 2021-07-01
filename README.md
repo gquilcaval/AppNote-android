@@ -10,4 +10,4 @@ El proyecto fue realizado con fines educativos
 - Live data
 - View Model
 - View Binding
-https://user-images.githubusercontent.com/35823155/124059333-8a43a700-d9f0-11eb-957f-e6145ef6a219.mov
+![5f3dtv](https://user-images.githubusercontent.com/35823155/124060101-ed820900-d9f1-11eb-814f-b2084673b2c7.gif)
