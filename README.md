@@ -1,6 +1,6 @@
 # APP DE NOTAS (BASICO)
 
-Proyecto educativo para gente que quiere aprender como se hace un APP de notas en kotlin.
+Proyecto desarrollado con fines educativos
 
 El proyecto fue realizado con fines educativos
 ### Tecnologias usadas
