@@ -2,7 +2,7 @@ trigger:
 - main  # Cambia a la rama que prefieras
 
 pool:
-  vmImage: 'ubuntu-latest'  # Usa Ubuntu, si prefieres Windows, cambia a 'windows-latest'
+  name: 'default'  # Usa Ubuntu, si prefieres Windows, cambia a 'windows-latest'
 
 jobs:
 - job: BuildAPK
