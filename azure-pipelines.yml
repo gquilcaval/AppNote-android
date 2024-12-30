@@ -9,29 +9,48 @@ jobs:
   displayName: 'Build APK'
   steps:
   
-  # Instalar Java (en este caso, Java 11)
-  - task: UseJavaToolInstaller@1
-    inputs:
-      versionSpec: '11'  # Cambia a la versión de Java que necesitas para tu proyecto Android
-
-  # Configurar el SDK de Android (si no está instalado en el agente de forma predeterminada)
-  - task: UseAndroidSdk@2
-    inputs:
-      sdkVersion: '30.0.3'  # Cambia a la versión del SDK de Android que necesites
-
-  # Descargar dependencias de Gradle (si es necesario)
-  - task: GradleInstaller@1
-    inputs:
-      gradleVersion: '7.5'  # Cambia a la versión de Gradle que necesitas para tu proyecto
+  # Instalar Java 11 usando un script
+  - script: |
+      sudo apt-get update
+      sudo apt-get install -y openjdk-11-jdk
+    displayName: 'Install Java 11'
+  
+  # Instalar Android SDK manualmente
+  - script: |
+      echo "Installing Android SDK..."
+      sudo apt-get install -y wget unzip
+      # Descargar el SDK de Android
+      wget https://dl.google.com/android/repository/commandlinetools-linux-7302050_latest.zip -O android_sdk.zip
+      # Descomprimir y mover a la carpeta adecuada
+      unzip android_sdk.zip -d $HOME/android-sdk
+      rm android_sdk.zip
+      # Agregar a la ruta
+      export ANDROID_HOME=$HOME/android-sdk
+      export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
+      # Aceptar las licencias
+      yes | sdkmanager --licenses
+      # Instalar el SDK y las herramientas necesarias (puedes agregar más si lo necesitas)
+      sdkmanager "platforms;android-30" "build-tools;30.0.3"
+    displayName: 'Install Android SDK'
+  
+  # Instalar Gradle manualmente
+  - script: |
+      echo "Installing Gradle..."
+      # Descargar Gradle
+      wget https://services.gradle.org/distributions/gradle-7.5-bin.zip -P /tmp
+      # Descomprimir Gradle en /opt
+      sudo unzip -d /opt /tmp/gradle-7.5-bin.zip
+      # Agregar Gradle al PATH
+      echo "export PATH=\$PATH:/opt/gradle-7.5/bin" >> ~/.bashrc
+      source ~/.bashrc
+      # Verificar la instalación de Gradle
+      gradle -v
+    displayName: 'Install Gradle'
 
   # Ejecutar el build con Gradle (comando assembleRelease para generar el APK)
-  - task: GradleBuild@2
-    inputs:
-      gradleWrapperFile: './gradlew'  # Asegúrate de que el wrapper de Gradle esté presente
-      gradleOptions: '-Xms2048m -Xmx3072m'  # Opcional, ajusta la memoria si es necesario
-      options: 'assembleRelease'  # Usa 'assembleDebug' si deseas un APK de depuración
-      workingDirectory: $(Build.SourcesDirectory)  # Directorio donde está tu proyecto
-      publishJUnitResults: false  # Si no tienes pruebas unitarias, puedes mantenerlo en false
+  - script: |
+      ./gradlew clean assembleRelease  # Ejecutar el comando para compilar el APK en modo release
+    displayName: 'Build APK using Gradle'
 
   # Publicar el APK generado como artefacto para poder descargarlo
   - task: PublishBuildArtifacts@1
