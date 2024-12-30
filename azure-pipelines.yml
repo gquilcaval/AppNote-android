@@ -1,30 +1,26 @@
-# Android
-# Build your Android project with Gradle.
-# Add steps that test, sign, and distribute the APK, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/android
-
 trigger:
-- main
+- main  # Puedes cambiar a tu rama preferida
 
 pool:
-  name: 'azure pipelines'
+  vmImage: 'ubuntu-latest'  # O usa 'windows-latest' si prefieres usar Windows
 
-steps:
-- task: Gradle@2
-  inputs:
-    workingDirectory: ''
-    gradleWrapperFile: 'gradlew'
-    gradleOptions: '-Xmx3072m'
-    publishJUnitResults: false
-    testResultsFiles: '**/TEST-*.xml'
-    tasks: 'assembleRelease'
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: $(Build.SourcesDirectory)
-    Contents: '**/build/outputs/apk/release/*.apk'  # Asegúrate de que la ruta sea correcta
-    TargetFolder: $(Build.ArtifactStagingDirectory)
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    ArtifactName: 'APK'
-    publishLocation: 'Container'
+jobs:
+- job: BuildAPK
+  steps:
+  - task: UseJavaToolInstaller@1
+    inputs:
+      versionSpec: '11'  # Asegúrate de que la versión de Java coincida con la de tu proyecto Android
+  - task: GradleBuild@2
+    inputs:
+      gradleWrapperFile: './gradlew'
+      gradleOptions: '-Xms2048m -Xmx3072m'  # Opcional, puedes ajustar la memoria si es necesario
+      options: 'assembleRelease'  # Utiliza 'assembleDebug' si quieres generar el APK de depuración
+      workingDirectory: $(Build.SourcesDirectory)
+      publishJUnitResults: false  # No publicar resultados de pruebas, ya que no estamos corriendo tests aquí
+      
+  # Publicar el APK generado como artefacto para poder descargarlo
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.SourcesDirectory)/app/build/outputs/apk/release'  # Ruta al APK generado
+      ArtifactName: 'apk'  # Nombre del artefacto
+      publishLocation: 'Container'  # Esto guarda el artefacto en el contenedor de artefactos de Azure DevOps
